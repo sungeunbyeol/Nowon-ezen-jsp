@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page import = "java.sql.*"%>
+<% 
+	//1 넘어온 데이터를 받기
+	request.setCharacterEncoding("EUC-KR"); //post방식에서의 한글처리, get방식의 한글처리는 제공하지 않는다.
+	String id = request.getParameter("id");
+	String name = request.getParameter("name");
+	String cname = request.getParameter("cname");
+	
+	//2 데이터 유효성 검사
+	if(id==null || name==null ||cname==null || id.trim().equals("")
+	|| name.trim().equals("") || cname.trim().equals("")){%>
+		<script type="text/javascript"> <%-- 나 이제 자바 스크립트 쓸거야 하는 선언문 --%>
+			alert("데이터를 모두 입력하셔야 합니다.")<%-- 새창 띄우기 --%>
+			history.back()								  <%-- 뒤로가기 --%>
+		</script>
+<% return;
+	}
+
+	//3 DB와 연결
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user = "javaapi";
+	String pass = "javaapi";
+	Connection con = DriverManager.getConnection(url, user, pass);
+	//4 쿼리 전송
+	//5 전송결과 성공하면 학생목록 페이지로 이동, 실패하면 student.jsp로 이동
+	//6 DB닫기
+%>
+	
+	
+%>

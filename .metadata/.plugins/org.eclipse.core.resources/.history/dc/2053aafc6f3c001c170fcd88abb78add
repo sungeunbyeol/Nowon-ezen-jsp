@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR" import="java.sql.*"%>
+<%
+		request.setCharacterEncoding("EUC-KR"); //한글처리하기
+		String name = request.getParameter("name");
+		if (name == null || name.trim().equals("")){ //유효성검사
+			response.sendRedirect("student.jsp");
+			return;
+		}
+%>
+		<div align="center">
+		<hr color="green" width="300">
+		<h2> 학 생 목 록 페 이 지</h2>
+		<hr color="green" width="300">
+		<table border="1" width="500">
+			<tr bgcolor="yellow">
+				<th>아이디</th>
+				<th>학생명</th>
+				<th>학급명</th>
+			</tr>
+		<%
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "javaapi";
+		String pass = "javaapi";
+		Connection con = DriverManager.getConnection(url, user, pass);
+		String sql = "select from student where name = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, name);
+		int res = ps.executeUpdate();
+		String msg = null, nextPage = null;
+		if (res>0){
+			msg = "학생찾기성공!! 학생찾기페이지로 이동합니다.";
+			nextPage = "list.jsp";
+		}else {
+			msg = "학생찾기실패!! 학생관리페이지로 이동합니다.";
+			nextPage = "student.jsp";
+		}
+		ps.close();
+		con.close();
+%>
+<script type="text/javascript">
+	alert("<%=msg%>")
+	location.href="<%=nextPage%>"
+</script>

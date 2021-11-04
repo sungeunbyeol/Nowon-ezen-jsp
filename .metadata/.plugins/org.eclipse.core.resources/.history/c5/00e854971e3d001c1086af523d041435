@@ -1,0 +1,14 @@
+package my.book;
+import java.sql.*;
+
+public class BookDAO {
+	Connection con;
+	PreparedStatement ps;
+	ResultSet rs;
+	
+	String url, user, pass;
+	
+	public BookDAO() {
+		
+	}
+}

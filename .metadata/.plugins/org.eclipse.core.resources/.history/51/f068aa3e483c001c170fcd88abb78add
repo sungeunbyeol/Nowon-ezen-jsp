@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+
+<html>
+<head>
+	<title>JSP로 만드는 홈페이지</title>
+</head>
+<body>
+	<div align="center">
+		<table>
+			<tr>
+				<td></td>
+				main | 로그인 | 회원가입 | 회원보기 | 쇼핑몰 | 게시판 | 회사소개
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

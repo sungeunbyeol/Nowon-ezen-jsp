@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+
+<table>
+	<tr>
+		<th>2</tr>
+		<th>3</tr>
+		<th>4</tr>
+		<th>5</tr>
+		<th>6</tr>
+		<th>7</tr>
+		<th>8</tr>
+		<th>9</tr>
+	</tr>
+</table>
+

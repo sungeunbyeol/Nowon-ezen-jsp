@@ -1,0 +1,20 @@
+<!-- test03.html -->
+<html>
+<head>
+	<title>글자모양변경</title>
+</head>
+<body>
+	<h1>안녕하세요</h1>
+	<h2>안녕하세요</h2>
+	<h3>안녕하세요</h3>
+	<h4>안녕하세요</h4>
+	<h5>안녕하세요</h5>
+	<h6>안녕하세요</h6>
+
+	안녕<br>
+	<b>안녕</b>
+
+	<font color="red">안녕</font>
+	<font size="7">안녕</font>
+</body>
+</html>

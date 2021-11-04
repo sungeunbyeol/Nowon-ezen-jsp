@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+
+<table>
+<%
+	for(int i=2; i<10; ++i){
+%>
+	<tr>
+		<th><%=i %></th>
+	</tr>	
+<%
+	}
+%>
+	
+</table>
+

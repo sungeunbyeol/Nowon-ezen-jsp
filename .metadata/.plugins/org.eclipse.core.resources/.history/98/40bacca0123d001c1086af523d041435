@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page import="java.sql.*" %>    
+<jsp:useBean id="stdao" class="my.student.StudentDAO"/>
+<!-- delete.jsp -->
+<%
+		stdao = deleteStudent();
+
+		String id = request.getParameter("id");
+		if (id == null || id.trim().equals("")){
+			response.sendRedirect("student.jsp");
+			return;
+		}
+%>
+<script type="text/javascript">
+	alert("<%=%>")
+	location.href="<%=%>"
+</script>
+
+
+
+
+
+
+
+
+
+

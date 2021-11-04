@@ -1,0 +1,32 @@
+<!-- test08.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>표만들기</title>
+</head>
+<body>
+	<table border="1"  width="400" height="300">
+		<tr bgcolor="green">
+			<th>번호</th>
+			<th>이름</th>
+			<th>주소</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>홍길동</td>
+			<td>서울 노원구</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>강호동</td>
+			<td>서울 도봉구</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>유재석</td>
+			<td>서울 강남구</td>
+		</tr>
+	</table>
+</body>
+</html>

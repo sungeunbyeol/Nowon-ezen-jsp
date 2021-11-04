@@ -1,0 +1,30 @@
+package my.student;
+import java.sql.*;
+
+public class StudentDAO {
+	Connection con;
+	PreparedStatement ps;
+	ResultSet rs;
+	
+	String url,user,pass;
+	
+	public StudentDAO() {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		url="jdvcLoracle:thin:@localhost:1521:xe";
+		user = "javaapi";
+		pass = "javaapi";
+	}
+	
+	public int insertStudent(String id, String name, String cname) throws SQLException {
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			String sql = "insert into student values(?,?,?)";
+		}
+	}
+	
+	
+}

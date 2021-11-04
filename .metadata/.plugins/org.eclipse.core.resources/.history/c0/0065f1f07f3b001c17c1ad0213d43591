@@ -1,0 +1,14 @@
+<!--  test02.html -->
+<html>
+<head>
+	<title>줄바꾸기 연습</title>
+</head>
+<body>
+	줄바꾸기 연습<br><!-- 줄 바꿀때 -->
+	줄바꾸기 연습<p>
+	<div>줄바꾸기 연습</div>
+	원하는 만큼 줄바꿈이 됩니다.
+	
+	<hr size="10">
+</body>
+</html>

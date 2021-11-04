@@ -1,0 +1,80 @@
+package my.book;
+import java.sql.*;
+import java.util.*;
+
+import my.book.BookDTO;
+
+public class BookDAO {
+	Connection con;
+	PreparedStatement ps;
+	ResultSet rs;
+	
+	String url, user, pass;
+	
+	public BookDAO() {//생성자는 반드시 public으로 해야한다.
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		url = "jdbc:oracle:thin:@localhost:1521:xe";
+		user = "javaapi";
+		pass = "javaapi";
+	}
+	
+	public int insertBook(BookDTO dto) throws SQLException {
+		try {
+			con = DriverManager.getConnection(url, user, pass);
+			String sql = "insert into jspBook values(?, ?, ?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1,  dto.getBookname());
+			ps.setString(2, dto.getPublisher());
+			ps.setString(3, dto.getWriter());
+			ps.setInt(4, dto.getPrice());
+			java.util.Date date = new java.util.Date();
+			java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyy-MM-dd");
+			ps.setString(5, sdf.format(date));
+			int res = ps.executeUpdate();
+			return res;
+		}finally {
+			if (ps != null) ps.close();
+			if (con != null) con.close();
+		}
+	}
+	
+	protected ArrayList<BookDTO> makeArrayList(ResultSet rs) throws SQLException {
+		ArrayList<BookDTO> list = new ArrayList<>();
+		while(rs.next()) {
+			BookDTO dto = new BookDTO();
+			dto.setBookname(rs.getString("bookname"));
+			dto.setPublisher(rs.getString("publisher"));
+			dto.setWriter(rs.getString("writer"));
+			dto.setPrice(rs.getInt("price"));
+			dto.setIndate(rs.getString("indate"));
+			list.add(dto);
+		}
+		return list;
+	}
+	
+	public ArrayList<BookDTO> listBook() throws SQLException{
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			String sql = "select * from jspBook";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			ArrayList<BookDTO> list = makeArrayList(rs);
+			return list;		
+		}finally {
+			if(rs != null) rs.close();
+			if(con != null) con.close();
+			if(ps != null) ps.close();
+			
+		}
+	}
+	
+	public String deleteStudent(String bookname) throws SQLEception{
+		
+	}
+	
+	
+}

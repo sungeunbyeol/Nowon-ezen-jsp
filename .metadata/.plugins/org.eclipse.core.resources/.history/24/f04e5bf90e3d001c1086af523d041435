@@ -1,0 +1,75 @@
+package my.student;
+
+import java.sql.*;
+import java.util.*;
+
+public class StudentDAO {
+	Connection con;
+	PreparedStatement ps;
+	ResultSet rs;
+	
+	String url, user, pass;
+	
+	public StudentDAO() {//생성자는 반드시 public으로 해야한다.
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		url = "jdbc:oracle:thin:@localhost:1521:xe";
+		user = "javaapi";
+		pass = "javaapi";
+	}
+	
+	public int insertStudent(String id, String name, String cname) throws SQLException {
+		try {
+			con = DriverManager.getConnection(url, user, pass);
+			String sql = "insert into student values(?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1,  id);
+			ps.setString(2, name);
+			ps.setString(3, cname);
+			int res = ps.executeUpdate();
+			return res;
+		}finally { //try절이 끝나면 멀티스레드로 finally가 시작됨. try에서 오류가 발생한다고 해도 끝났으니 finally는 실행됨
+			if (ps != null) ps.close();
+			if (con != null) con.close();
+		}
+	}
+	
+	public ArrayList<StudentDTO> listStudent() throws SQLException{
+		try {
+			con = DriverManager.getConnection(url,user,pass);
+			String sql = "select * from student";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			ArrayList<StudentDTO> list =new ArrayList<>();
+			while(rs.next()) {
+				StudentDTO dto = new StudentDTO();
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setName(rs.getString("cname"));
+				list.add(dto);
+			}
+			return list;
+		}
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

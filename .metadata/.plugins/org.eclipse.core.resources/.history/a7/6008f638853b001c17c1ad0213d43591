@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>번호있는 리스트</title>
+</head>
+<body>
+	<ol>
+		<li>짜장면</li>
+		<li>짬뽕</li>
+		<li>탕수육</li>
+		<li>팔보채</li>
+	</ol>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!-- test06.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>이미지</title>
+</head>
+<body>
+	<img src="sexy.png"/>
+</body>
+</html>

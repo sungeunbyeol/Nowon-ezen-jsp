@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR" import="java.sql.*"%>
+<%
+		String name = request.getParameter("name");
+		if (name == null || name.trim().equals("")){
+			response.sendRedirect("student.jsp");
+			return;
+		}
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "javaapi";
+		String pass = "javaapi";
+		Connection con = DriverManager.getConnection(url, user, pass);
+		String sql = "insert from student where name = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(2, name);
+		int res = ps.executeUpdate();
+		String msg = null, nextPage = null;
+		if (res>0){
+			msg = "학생찾기성공!! 학생찾기페이지로 이동합니다.";
+			nextPage = "list.jsp";
+		}else {
+			msg = "학생찾기실패!! 학생관리페이지로 이동합니다.";
+			nextPage = "student.jsp";
+		}
+		ps.close();
+		con.close();
+%>
+<script type="text/javascript">
+	alert("<%=msg%>")
+	location.href="<%=nextPage%>"
+</script>

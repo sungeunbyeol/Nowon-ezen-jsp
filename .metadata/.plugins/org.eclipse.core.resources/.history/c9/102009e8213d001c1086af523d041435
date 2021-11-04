@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+
+    
+<% 
+	//1 넘어온 데이터를 받기
+	request.setCharacterEncoding("EUC-KR"); //post방식에서의 한글처리, get방식의 한글처리는 제공하지 않는다.
+%>
+<jsp:useBean id="bdto" class="my.book.BookDTO"/>
+<jsp:setProperty property="*" name="bdao" />
+<jsp:useBean id="bdao" class="my.book.BookDAO"/>
+
+<%
+	//2 데이터 유효성 검사
+	if(bdto.getBookname()==null || bdto.getPublisher()==null ||bdto.getWriter()==null || 
+			bdto.getBookname().trim().equals("") || bdto.getPublisher().trim().equals("") || bdto.getWriter().trim().equals("")){%>
+		<script type="text/javascript"> 
+			alert("도서명, 출판사, 지은이를 모두 입력해주세요!")
+			history.back()								  
+		</script>
+<% return;
+	}
+%>
