@@ -2,6 +2,8 @@
     pageEncoding="EUC-KR" import="my.member.*"%>
 <!-- member_edit.jsp -->
 <jsp:useBean id="mbdao" class="my.member.MemberDAO" />
+<jsp:useBean id="dbPool" class="my.db.ConnectionPoolBean" scope="application"/>
+<jsp:setProperty property="pool" name="mbdao" value="<%=dbPool%>"/>
 <%
 		String no = request.getParameter("no");
 		if (no == null || no.trim().equals("")){

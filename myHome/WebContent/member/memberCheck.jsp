@@ -2,6 +2,8 @@
     pageEncoding="EUC-KR"%>
 <!-- memberCheck.jsp -->
 <jsp:useBean id="mbdao" class="my.member.MemberDAO" />
+<jsp:useBean id="dbPool" class="my.db.ConnectionPoolBean" scope="application"/>
+<jsp:setProperty property="pool" name="mbdao" value="<%=dbPool%>"/>
 <%
 		request.setCharacterEncoding("EUC-KR");
 		String name = request.getParameter("name");

@@ -17,7 +17,7 @@
 			<tr height="10%">
 				<td align="center" colspan="2">
 					<a href="<%=request.getContextPath()%>/index.jsp">main</a> | 
-					<a href="<%=request.getContextPath()%>/login.jsp">로그인</a> | 
+					<a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a> | 
 					<a href="javascript:checkMember()">회원가입</a> | 
 					<a href="<%=request.getContextPath()%>/member/memberAll.jsp">회원보기</a> | 
 					<a href="<%=request.getContextPath()%>/member/memberAll.jsp?mode=find">회원찾기</a> | 

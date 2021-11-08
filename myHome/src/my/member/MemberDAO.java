@@ -3,6 +3,8 @@ package my.member;
 import java.sql.*;
 import java.util.*;
 
+import my.db.ConnectionPoolBean;
+
 public class MemberDAO {
 	Connection con;
 	PreparedStatement ps;
@@ -10,6 +12,11 @@ public class MemberDAO {
 	
 	String url, user, pass;
 	
+	ConnectionPoolBean pool;
+	public void setPool(ConnectionPoolBean pool) {
+		this.pool = pool;
+	}
+
 	private String search;
 	private String searchString;
 	public void setSearchString(String searchString) {
@@ -33,7 +40,7 @@ public class MemberDAO {
 	
 	public boolean isCheckMember(String name, String ssn1, String ssn2) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = pool.getConnection();
 			String sql = "select * from jspMember where ssn1=? and ssn2=?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, ssn1);
@@ -46,13 +53,13 @@ public class MemberDAO {
 		}finally {
 			if (rs != null) rs.close();
 			if (ps != null) ps.close();
-			if (con != null) con.close();
+			if (con != null) pool.returnConnection(con);
 		}
 	}
 	
 	public int insertMember(MemberDTO dto) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = pool.getConnection();
 			String sql = "insert into jspMember values(member_seq.nextval, ?,?,?,?,?,?,?,?,?,sysdate)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getName());
@@ -68,7 +75,7 @@ public class MemberDAO {
 			return res;
 		}finally {
 			if (ps != null) ps.close();
-			if (con != null) con.close();
+			if (con != null) pool.returnConnection(con);
 		}
 	}
 	
@@ -94,7 +101,7 @@ public class MemberDAO {
 	
 	public List<MemberDTO> listMember() throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = pool.getConnection();
 			String sql = "select * from jspMember";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -103,13 +110,13 @@ public class MemberDAO {
 		}finally {
 			if (rs != null) rs.close();
 			if (ps != null) ps.close();
-			if (con != null) con.close();
+			if (con != null) pool.returnConnection(con);
 		}
 	}
 	
 	public List<MemberDTO> findMember() throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = pool.getConnection();
 			String sql = "select * from jspMember where " + search  + " = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, searchString);
@@ -119,13 +126,13 @@ public class MemberDAO {
 		}finally {
 			if (rs != null) rs.close();
 			if (ps != null) ps.close();
-			if (con != null) con.close();
+			if (con != null) pool.returnConnection(con);
 		}
 	}
 	
 	public int deleteMember(int no) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = pool.getConnection();
 			String sql = "delete from jspMember where no = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, no);
@@ -133,13 +140,13 @@ public class MemberDAO {
 			return res;
 		}finally {
 			if (ps != null) ps.close();
-			if (con != null) con.close();
+			if (con != null) pool.returnConnection(con);
 		}
 	}
 	
 	public MemberDTO getMember(int no) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = pool.getConnection();
 			String sql = "select * from jspMember where no = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, no);
@@ -149,13 +156,13 @@ public class MemberDAO {
 		}finally {
 			if (rs != null) rs.close();
 			if (ps != null) ps.close();
-			if (con != null) con.close();
+			if (con != null) pool.returnConnection(con);
 		}
 	}
 	
 	public int updateMember(MemberDTO dto) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = pool.getConnection();
 			String sql = "update jspMember set passwd=?, email=?, hp1=?, hp2=?, hp3=? where no = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getPasswd());
@@ -168,7 +175,33 @@ public class MemberDAO {
 			return res;
 		}finally {
 			if (ps != null) ps.close();
-			if (con != null) con.close();
+			if (con != null) pool.returnConnection(con);
+		}
+	}
+	
+	public String searchMember(String name, String ssn1, String ssn2, String id) throws SQLException {
+		try {
+			con = pool.getConnection();
+			String sql = null;
+			if (id == null) {
+				sql = "select id from jspmember where name=? and ssn1=? and ssn2=?";
+			}else {
+				sql = "select passwd from jspmember where name=? and ssn1=? and ssn2=? and id=?";
+			}
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, ssn1);
+			ps.setString(3, ssn2);
+			if (id != null) ps.setString(4, id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getString(1);
+			}
+			return null;
+		}finally {
+			if (rs != null) rs.close();
+			if (ps != null) ps.close();
+			if (con != null) pool.returnConnection(con);
 		}
 	}
 }

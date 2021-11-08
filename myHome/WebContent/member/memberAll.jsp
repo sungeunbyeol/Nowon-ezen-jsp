@@ -12,6 +12,10 @@
 <%@ include file="../top.jsp"%>
 <link rel="stylesheet" type="text/css" href="../style.css">
 <jsp:useBean id="mbdao" class="my.member.MemberDAO" />
+<jsp:useBean id="dbPool" class="my.db.ConnectionPoolBean" scope="application"/>
+<jsp:setProperty property="pool" name="mbdao" value="<%=dbPool%>"/>
+<!-- dbdao.setPool(dbPool); -->
+
 <div align="center">
 	<hr color="green" width="300">
 <%	if (mode.equals("all")){ %>	
