@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css"> 
 	<script type="text/javascript">
 		function checkMember(){
-			window.open("member/memberSsn.jsp", "member", "width=650, height=500");
+			window.open("<%=request.getContextPath()%>/member/memberSsn.jsp", "member", "width=650, height=400");
 		}
 	</script>
 </head>
@@ -16,12 +16,27 @@
 		<table border="1" width="800" height="650">
 			<tr height="10%">
 				<td align="center" colspan="2">
-					<a href="index.jsp">main</a> | 
-					<a href="login.jsp">로그인</a> | 
-					<a href="javascript:checkMember()">회원가입</a> | 회원보기 | 쇼핑몰 | 게시판 | 
-					<a href="company.jsp">회사소개</a>
+					<a href="<%=request.getContextPath()%>/index.jsp">main</a> | 
+					<a href="<%=request.getContextPath()%>/login.jsp">로그인</a> | 
+					<a href="javascript:checkMember()">회원가입</a> | 
+					<a href="<%=request.getContextPath()%>/member/memberAll.jsp">회원보기</a> | 
+					<a href="<%=request.getContextPath()%>/member/memberAll.jsp?mode=find">회원찾기</a> | 
+					쇼핑몰 | 게시판 | 
+					<a href="<%=request.getContextPath()%>/company.jsp">회사소개</a>
 				</td>
 			</tr>
 			<tr>
 				<td width="20%">tree/view</td>
 				<td width="80%">
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				

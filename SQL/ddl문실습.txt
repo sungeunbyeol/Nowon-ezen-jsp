@@ -1,0 +1,145 @@
+DDL문 실습
+ - table만들기
+   - 자료형
+     *오라클 자료형
+       - 문자열자료형 : char, varchar2
+       - 수치형자료형 : number
+
+name char(10), 
+name => "abcd" 	=> abcd외 공백 6개 포함해서 저장
+name => "12345678901234" => 1234567890 외 나머지는 버리고 저장
+
+name varchar2(10)
+name => "abcd"	=> abcd만 저장
+name => "12345678901234" => 자리수가 넘어서는 데이터를 넣으려고 해서 오류발생!!
+
+  - create table 테이블명(컬럼명 자료형, 컬럼명 자료형...);
+
+ - char는 2000자까지 가능, varchar2는 4000자까지만 가능
+ - 테이블 구조 보기 : desc 테이블명;
+ - 테이블 보기 : select * from tab;
+
+ - table 수정
+   - alter table 테이블명 add 컬럼명 자료형; <= 컬럼추가
+   - alter table 테이블명 modify 컬럼명 자료형; <= 기존 컬럼의 자료형을 바꾸어 준다
+   - alter table 테이블명 rename column 컬럼명 to 새컬럼명; <=컬럼명 바꾸기
+   - alter table 테이블명 drop (컬럼명) <=컬럼삭제, 반드시 ()안에 컬럼명을 적어준다
+
+ - table 삭제
+   - drop table 테이블명;
+
+SQL> create table test01(name varchar2(20), tel varchar2(12));
+
+테이블이 생성되었습니다.
+
+SQL> desc test01;
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(20)
+ TEL                                                VARCHAR2(12)
+
+SQL> select * from tab;
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+TEST01
+TABLE
+
+
+SQL> create table test02(name varchar2(20), tel varchar2(12));
+
+테이블이 생성되었습니다.
+
+SQL> select * from tab;
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+TEST01
+TABLE
+
+TEST02
+TABLE
+
+
+SQL> desc test01;
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(20)
+ TEL                                                VARCHAR2(12)
+
+SQL> alter table test01 add address varchar2(100);
+
+테이블이 변경되었습니다.
+
+SQL> desc test01
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(20)
+ TEL                                                VARCHAR2(12)
+ ADDRESS                                            VARCHAR2(100)
+
+SQL> alter table test01 modify address varchar2(200);
+
+테이블이 변경되었습니다.
+
+SQL> desc test01;
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(20)
+ TEL                                                VARCHAR2(12)
+ ADDRESS                                            VARCHAR2(200)
+
+SQL> alter table test01 rename column address to addr;
+
+테이블이 변경되었습니다.
+
+SQL> desc test01;
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(20)
+ TEL                                                VARCHAR2(12)
+ ADDR                                               VARCHAR2(200)
+
+SQL> alter table test01 drop addr;
+alter table test01 drop addr
+                        *
+1행에 오류:
+ORA-00905: 누락된 키워드
+
+
+SQL> alter table test01 drop (addr);
+
+테이블이 변경되었습니다.
+
+SQL> desc test01;
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(20)
+ TEL                                                VARCHAR2(12)
+
+SQL> drop table test02;
+
+테이블이 삭제되었습니다.
+
+SQL> select * from tab;
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE                     CLUSTERID
+-------------------------- ----------
+TEST01
+TABLE
+
+
+SQL>
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+제약조건
+ - primary key	: not null + unique, 중복을 허용하지 않으며, null도 올 수 없다.
+		  여러개의 컬럼 중 고유값을 가진 컬럼(대표값)
+		  한개의 컬럼만 설정 가능
+ - not null	: null값을 허용하지 않는다.(중복 허용)
+ - unique		: 중복을 허용하지 않는다.
+ - foreign key	: 참조키, 
+ - check		: 특별한 조건에 맞는 값만 허용
+
+
+DDL문
+- create table 테이블명(컬럼명 자료형, 컬럼명 자료형...);
+- table 수정
+   - alter table 테이블명 add 컬럼명 자료형; <= 컬럼추가
+   - alter table 테이블명 modify 컬럼명 자료형; <= 기존 컬럼의 자료형을 바꾸어 준다
+   - alter table 테이블명 rename column 컬럼명 to 새컬럼명; <=컬럼명 바꾸기
+   - alter table 테이블명 drop (컬럼명) <=컬럼삭제, 반드시 ()안에 컬럼명을 적어준다
+ - table 삭제
+   - drop table 테이블명;
+   
+ DML문
+- 데이터 추가 : insert into 테이블명(컬럼명) values(해당자료를 넣어준다)
+- 데이터 보기 : select 컬럼명, 컬럼명... from 테이블명 where 조건절;
+- 데이터 수정 : update 테이블명 set 컬럼명='고칠데이터', 컬럼명='고칠데이터' .. where 조건절;
+- 데이터 삭제 : delete from 테이블명 where 조건절;

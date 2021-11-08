@@ -1,0 +1,43 @@
+SQL> create table testMember
+  2  (no number primary key,
+  3  name varchar2(20) not null,
+  4  tel varchar2(15) not null,
+  5  addr varchar2(500));
+
+테이블이 생성되었습니다.
+
+SQL> create sequence test_seq
+  2  increment by 1
+  3  start with 1;
+
+시퀀스가 생성되었습니다.
+
+SQL> insert into testMember values(1, '홍길동', '123', '서울 강북구');
+
+1 개의 행이 만들어졌습니다.
+
+SQL> delete from testMember;
+
+1 행이 삭제되었습니다.
+
+SQL> insert into testMember values(test_seq.nextval, '홍길동', '123', '서울 강북구');
+
+1 개의 행이 만들어졌습니다.
+
+SQL> select * from testMember;
+
+        NO NAME	TEL  		ADDR
+           1 홍길동          123                           서울 강북구
+
+
+SQL> insert into testMember values(test_seq.nextval, '유재석', '111', '서울 강북구');
+
+1 개의 행이 만들어졌습니다.
+
+SQL> select * from testMember;
+
+         NO NAME	TEL  		ADDR
+           1 홍길동          123                           서울 강북구
+           2 유재석          111                           서울 강북구
+
+ 
