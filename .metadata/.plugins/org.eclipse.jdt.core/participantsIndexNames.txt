@@ -1,5 +1,9 @@
 INDEX VERSION 1.131
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3887486278.index
+\myHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2883426637.index
+\myHome\src
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1076176871.index
 \myHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3362249268.index
 \myHome\src
@@ -13,7 +17,13 @@ C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\390685
 \myHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1283813816.index
 \myHome\src
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3454777179.index
+\myHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1909759100.index
+\myHome\src
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\460626342.index
+\myHome\src
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\114535658.index
 \myHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2964878577.index
 \jspBook\src

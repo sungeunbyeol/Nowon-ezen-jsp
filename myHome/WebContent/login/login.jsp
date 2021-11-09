@@ -8,7 +8,33 @@
 		window.open("<%=request.getContextPath()%>/login/search.jsp?mode=" + mode, 
 																				"search", "width=650, height=400")
 	}
+	function loginCheck(){
+		if (f.id.value==""){
+			alert("아이디를 입력해 주세요!!")
+			f.id.focus()
+			return
+		}
+		if (f.passwd.value==""){
+			alert("비밀번호를 입력해 주세요!!")
+			f.passwd.focus()
+			return
+		}
+		document.f.submit()
+	}
 </script>
+<%
+		String value = null;
+		Cookie cks[] = request.getCookies();
+		if (cks != null && cks.length != 0){
+			for(int i=0; i<cks.length; ++i){
+				String name = cks[i].getName();
+				if (name.equals("saveId")){
+					value = cks[i].getValue();
+					break;
+				}
+			}
+		}
+%>
 <br>
 <img src="../img/bottom.gif" width=570 height="40" border="0" alt="">
 <br>
@@ -23,14 +49,22 @@
 				width="28" height="11" border="0" alt="아이디">&nbsp;&nbsp;
 			</td>
 			<td width="40%">
+<%		if (value == null){ %>			
 				<input type="text" name="id" tabindex="1">
+<%		}else { %>
+				<input type="text" name="id" value="<%=value%>" tabindex="1">
+<%		} %>				
 			</td>
 			<td rowspan="2" width="30%" valign="middle">
 				<a href="javascript:loginCheck()">
 					<img src="../img/bt_login.gif" border="0" alt="로그인"  tabindex="3">&nbsp;&nbsp;<br>
 				</a>
 				<nobr>
+<%		if (value == null){ %>
 					<input type="checkbox" name="saveId">
+<%		}else { %>
+					<input type="checkbox" name="saveId" checked>
+<%		} %>					
 					<font face="굴림" size="2">아이디 기억하기</font>
 				</nobr>
 			</td>
