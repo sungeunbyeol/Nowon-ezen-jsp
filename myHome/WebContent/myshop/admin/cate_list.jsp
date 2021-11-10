@@ -11,10 +11,10 @@
 	<table border="1" width="700">
 		<caption><h3>카테고리 목록</h3></caption>
 		<tr>
-			<th>번호</th>
-			<th width="30%">카테고리코드</th>
-			<th width="50%">카테고리명</th>
-			<th>삭제</th>
+			<th bgcolor="pink">번호</th>
+			<th width="30%" bgcolor="pink">카테고리코드</th>
+			<th width="50%" bgcolor="pink">카테고리명</th>
+			<th bgcolor="pink">삭제</th>
 		</tr>
 <%
 		List<CategoryDTO> clist = cdao.listCate();
@@ -25,8 +25,8 @@
 <%	}else {
 			for(CategoryDTO dto : clist){%>
 		<tr>
-			<td align="right"><%=dto.getCnum()%></td>
-			<td align="center"><%=dto.getCode()%></td>
+			<td align="right" ><%=dto.getCnum()%></td>
+			<td align="center" ><%=dto.getCode()%></td>
 			<td align="center"><%=dto.getCname()%></td>
 			<td align="center"><a href="cate_delete.jsp?cnum=<%=dto.getCnum()%>">삭제</a></td>
 		</tr>

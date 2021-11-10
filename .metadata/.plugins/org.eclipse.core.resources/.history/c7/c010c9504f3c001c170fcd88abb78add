@@ -1,9 +1,0 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!-- student.jsp -->
-
-<html>
-<head>
-<title>학생관리 프로그램</title>
-</head>
-</html>

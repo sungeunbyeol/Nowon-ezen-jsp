@@ -1,5 +1,0 @@
-String sql = "insert into student values(?,?,?)"; //?,?,? 넣는거는 동적쿼리문
-	PreparedStatement ps = con.prepareStatement(sql);
-	ps.setString(1, id);
-	ps.setString(2, name);
-	ps.setString(3, cname);

@@ -1,8 +1,0 @@
-
-executeQuery()
-	-	용도는 SELECT문을 수행할 때 사용하며 반환되는 값은 Resultset 클래스의 인스턴스로,
- 		해당 SELECT문의 결과에 해당하는 데이터에 접근할 수 있는 방법을 제공한다.
-
-executeUpdate()
- - UPDATE, DELETE와 같은 문을 수행할 때 사용(주로 수정), 반환값은 int값으로, 처리된 데이터의 수를 반환한다.
- 

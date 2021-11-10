@@ -7,15 +7,15 @@
 		<table border="1" width="500" height="150">
 			<caption><h3>카테고리등록</h3></caption>
 			<tr>
-				<th>카테고리 코드</th>
+				<th bgcolor="pink">카테고리 코드</th>
 				<td><input type="text" name="code"></td>
 			</tr>
 			<tr>
-				<th>카테고리 이름</th>
+				<th bgcolor="pink">카테고리 이름</th>
 				<td><input type="text" name="cname"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
+				<td colspan="2" align="center" bgcolor=#E2E2E2>
 					<input type="submit" value="등록">
 					<input type="reset" value="취소">
 				</td>
