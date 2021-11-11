@@ -15,6 +15,8 @@ C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\187707
 \jspBook\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3906850246.index
 \myHome\src
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2055959451.index
+\myHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1283813816.index
 \myHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3454777179.index

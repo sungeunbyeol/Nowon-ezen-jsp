@@ -1,9 +1,0 @@
-package my.book;
-
-public class BookDTO {
-	private String bookname;
-	private String publisher;
-	private String writer;
-	private int price;
-	private String indate;
-}
