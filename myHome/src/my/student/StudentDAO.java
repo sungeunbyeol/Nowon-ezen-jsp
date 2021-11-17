@@ -1,29 +1,29 @@
 package my.student;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+
+import javax.naming.*;
+import javax.sql.DataSource;
 
 public class StudentDAO {
 	Connection con;
 	PreparedStatement ps;
 	ResultSet rs;
 	
-	String url, user, pass;
-	
-	public StudentDAO() {//생성자는 반드시 public으로 해야한다.
+	static DataSource ds;			//javax.sql.*
+	static {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
+			Context init = new InitialContext();		//javax.naming.*
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/oracle");
+		}catch(NamingException e) {
+			System.err.println("lookup실패!!" + e.getMessage());
 		}
-		url = "jdbc:oracle:thin:@localhost:1521:xe";
-		user = "javaapi";
-		pass = "javaapi";
 	}
 	
 	public int insertStudent(StudentDTO dto) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = ds.getConnection();
 			String sql = "insert into student values(?, ?, ?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1,  dto.getId());
@@ -49,10 +49,9 @@ public class StudentDAO {
 		return list;
 	}
 	
-	
 	public ArrayList<StudentDTO> listStudent() throws SQLException{
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = ds.getConnection();
 			String sql = "select * from student";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -65,12 +64,12 @@ public class StudentDAO {
 		}
 	}
 	
-	public int deleteStudent(String id) throws SQLException{
+	public int deleteStudent(String id) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url,user,pass);
-			String sql ="delete from student where id = ?";
+			con = ds.getConnection();
+			String sql = "delete from student where id = ?";
 			ps = con.prepareStatement(sql);
-			ps.setString(1,  id);
+			ps.setString(1, id);
 			int res = ps.executeUpdate();
 			return res;
 		}finally {
@@ -81,7 +80,7 @@ public class StudentDAO {
 	
 	public ArrayList<StudentDTO> findStudent(String name) throws SQLException {
 		try {
-			con = DriverManager.getConnection(url, user, pass);
+			con = ds.getConnection();
 			String sql = "select * from student where name = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, name);
@@ -94,7 +93,6 @@ public class StudentDAO {
 			if (con != null) con.close();
 		}
 	}
-	
 }
 
 

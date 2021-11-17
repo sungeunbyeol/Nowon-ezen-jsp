@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app> <!-- web-app 시작 -->
+<servlet>
+	<servlet-name>hello</servlet-name> <!-- servlet 이름 정하기 -->
+	<servlet-class>servlet.HelloServlet</servlet-class> <!-- 클래스는 패키지명이랑 클래스명까지 다 적어야함. 패키지가 없을 땐 클래스명만 적기  -->
+</servlet>
+<servlet-mapping>
+	<servlet-name>hello</servlet-name> <!-- 위에 name이랑 같은걸 적어줘야 찾을 수 있음 -->
+	<url-pattern>/hello</url-pattern> <!-- /hello 라는 이름이 나오면 이 서블릿을 찾아줘라 -->
+</servlet-mapping>
+<servlet>
+	<servlet-name>contact</servlet-name>
+	<servlet-class>servlet.ContactServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>contact</servlet-name>
+	<url-pattern>/contact.do</url-pattern>
+</servlet-mapping>
+<servlet>
+	<servlet-name>memoInsert</servlet-name>
+	<servlet-class>memo.servlet.MemoInsertServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>memoInsert</servlet-name>
+	<url-pattern>/memo.do</url-pattern>
+</servlet-mapping>
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+

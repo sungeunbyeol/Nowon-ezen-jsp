@@ -3,7 +3,7 @@
 <!-- student.jsp -->
 <html>
 <head>
-	<title>학생관리프로그램</title>
+	<title>학생관리</title>
 </head>
 <body>
 	<div align="center">
@@ -18,9 +18,9 @@
 						학생명 : <input type="text" name="name"><br>
 						학급명 : <input type="text" name="cname"><br>
 						<input type="submit" value="입력">
-						<input type="reset" value="다시입력">
+						<input type="reset" value="취소">
 					</td>
-				</tr>
+				</tr>			
 			</table>
 		</form>
 		<hr color="green" width="300">
@@ -33,7 +33,7 @@
 						아이디 : <input type="text" name="id">
 						<input type="submit" value="삭제">
 					</td>
-				</tr>
+				</tr>			
 			</table>
 		</form>
 		<hr color="green" width="300">
@@ -46,7 +46,7 @@
 						학생명 : <input type="text" name="name">
 						<input type="submit" value="찾기">
 					</td>
-				</tr>
+				</tr>			
 			</table>
 		</form>
 		<hr color="green" width="300">
@@ -58,9 +58,14 @@
 					<td>
 						<input type="submit" value="학생목록페이지로 이동">
 					</td>
-				</tr>
+				</tr>			
 			</table>
 		</form>
 	</div>
 </body>
 </html>
+
+
+
+
+

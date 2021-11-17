@@ -1,13 +1,12 @@
 package my.student;
 
 public class StudentDTO {
-	//DTO클래스 만들기
-	//1.테이블의 컬럼값으로 멤버필드를 만들어 준다
+	//table의 컬럼명으로 멤버필드를 만든다.
 	private String id;
 	private String name;
 	private String cname;
-	//2.해당 멤버필드의 setter, getter 메소드를 만들어준다
-	//마우스 오른쪽 눌러서 소스 눌러서 제너릭 게터 세터 눌러주고 올셀렉트 눌러서 확인
+	
+	//모든 멤버필드에 setter, getter메소드를 만들어 준다.
 	public String getId() {
 		return id;
 	}
@@ -26,5 +25,5 @@ public class StudentDTO {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	
-}
+}	
+

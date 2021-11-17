@@ -1,8 +1,8 @@
 package my.login;
 
-import my.db.ConnectionPoolBean;
 import java.sql.*;
-public class LoginOkBean {
+
+public class LoginOkBean {//로그인이 성공하면 그 접속자의 정보를 세션에 저장하기 위한 클래스
 	private int no;
 	private String name;
 	private String id;
@@ -33,6 +33,7 @@ public class LoginOkBean {
 	public String getSsn1() {
 		return ssn1;
 	}
+
 	public String getSsn2() {
 		return ssn2;
 	}
@@ -42,6 +43,7 @@ public class LoginOkBean {
 	public String getHp1() {
 		return hp1;
 	}
+
 	public String getHp2() {
 		return hp2;
 	}
@@ -52,42 +54,49 @@ public class LoginOkBean {
 		return joindate;
 	}
 	
-	private ConnectionPoolBean pool;
-	
-	public boolean isMemberSetting() {
+	public boolean isSetting() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
 		try {
-			con = pool.getConnection(); // pool.getConnection(); 이렇게 하면 connection 하는구나 하고 기능만 알면됨
-			String sql = "select * from jspmember where id = ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1,id);
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				no = rs.getInt("no");
-				name = rs.getString("name");
-				//id = rs.getString("id");
-				passwd = rs.getString("passwd");
-				ssn1 = rs.getString("ssn1");
-				ssn2 = rs.getString("ssn2");
-				email = rs.getString("email");
-				hp1 = rs.getString("hp1");
-				hp2 = rs.getString("hp2");
-				hp3 = rs.getString("hp3");
-				joindate = rs.getString("joindate");
-				return true;
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
+			 con = DriverManager.getConnection
+					 ("jdbc:oracle:thin:@localhost:1521:xe", "bigdata3", "bigdata3");
+			 String sql = "select * from member where id = ?";
+			 ps = con.prepareStatement(sql);
+			 ps.setString(1, id);
+			 rs = ps.executeQuery();
+			 if (rs.next()) {
+				 no = rs.getInt("no");
+				 name = rs.getString("name");
+				 passwd = rs.getString("passwd");
+				 ssn1 = rs.getString("ssn1");
+				 ssn2 = rs.getString("ssn2");
+				 email = rs.getString("email");
+				 hp1 = rs.getString("hp1");
+				 hp2 = rs.getString("hp2");
+				 hp3 = rs.getString("hp3");
+				 joindate = rs.getString("joindate");
+				 return true;
+			 }
+			 return false;
 		}finally {
-			try {
-				if(con != null) con.close();
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {}
-		}	return false;
+			if (rs != null) rs.close();
+			if (ps != null) ps.close();
+			if (con != null) con.close();
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

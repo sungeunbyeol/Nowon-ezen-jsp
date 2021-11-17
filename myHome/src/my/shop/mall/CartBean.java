@@ -1,39 +1,38 @@
 package my.shop.mall;
 
-import java.util.Hashtable;
-
-import my.shop.ProductDTO;
+import java.util.*;
+import my.shop.*;
 
 public class CartBean {
-	Hashtable<Integer, ProductDTO> ht;
-	ProductList productList;
+	Hashtable<String, ProductDTO> ht;
+	ProductList prodlist;
 	
 	public CartBean() {
 		ht = new Hashtable<>();
 	}
-	
-	public void setProductList(ProductList productList) {
-		this.productList = productList;
+
+	public void setProdlist(ProductList prodlist) {
+		this.prodlist = prodlist;
 	}
 
-	public boolean addCart(int pnum, String select, int qty) {
+	public boolean addCart(String pnum, String select, int qty) {
 		if (ht.containsKey(pnum)) {
 			ProductDTO dto = ht.get(pnum);
-			dto.setPqty(dto.getPqty() + qty);
+			dto.setPqty(dto.getPqty()+qty);
 		}else {
-			ProductDTO pdto = productList.getProduct(pnum, select);
-			pdto.setPqty(qty);
-			ht.put(pnum, pdto);
+			ProductDTO dto = prodlist.getProduct(Integer.parseInt(pnum), select);
+			dto.setPqty(qty);
+			ht.put(pnum, dto);
 		}
 		return true;
 	}
 	
-	public Hashtable<Integer, ProductDTO> listCart(){
+	public Hashtable<String, ProductDTO> listCart() {
 		return ht;
 	}
 	
-	public void editCart(int pnum, int pqty) {
-		if (pqty == 0) {
+	public void editCart(String pnum, int pqty) {
+		if (pqty==0) {
 			deleteCart(pnum);
 		}else {
 			ProductDTO dto = ht.get(pnum);
@@ -41,17 +40,10 @@ public class CartBean {
 		}
 	}
 	
-	public void deleteCart(int pnum) {
+	public void deleteCart(String pnum) {
 		ht.remove(pnum);
 	}
 }
-
-
-
-
-
-
-
 
 
 

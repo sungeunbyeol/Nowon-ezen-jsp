@@ -1,9 +1,9 @@
 package my.shop;
 
-import java.util.*;
 import java.sql.*;
+import java.util.*;
 
-import my.db.ConnectionPoolBean;
+import my.db.*;
 
 public class CategoryBean {
 	Connection con;
@@ -15,37 +15,57 @@ public class CategoryBean {
 		this.pool = pool;
 	}
 	
-	public int insertCate(CategoryDTO dto) throws SQLException {
-		try {
+	public boolean check(CategoryDTO dto) throws SQLException{
+		String sql = "select * from category where code=? or cname=?";
+		try{
 			con = pool.getConnection();
-			String sql = "insert into category values(cate_seq.nextval, ?, ?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getCode());
 			ps.setString(2, dto.getCname());
-			int res = ps.executeUpdate();
-			return res;
-		}finally {
+			rs = ps.executeQuery();
+			if (rs.next()){
+				return true;
+			}else {
+				return false;
+			}
+		}finally{
+			if (rs != null) rs.close();
 			if (ps != null) ps.close();
 			if (con != null) pool.returnConnection(con);
 		}
 	}
 	
-	public List<CategoryDTO> listCate() throws SQLException {
-		try {
+	public int insertCate(CategoryDTO dto) throws SQLException {
+		String sql = "insert into category values(cate_seq.nextval,?,?)";
+		try{
 			con = pool.getConnection();
-			String sql = "select * from category order by cnum asc";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, dto.getCode());
+			ps.setString(2, dto.getCname());
+			int res = ps.executeUpdate();
+			return res;
+		}finally{
+			if (ps != null) ps.close();
+			if (con != null) pool.returnConnection(con);
+		}
+	}
+	
+	public List<CategoryDTO> listCate() throws SQLException{
+		String sql = "select * from category";
+		List<CategoryDTO> list = new ArrayList<>();
+		try{
+			con = pool.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			List<CategoryDTO> clist = new ArrayList<>();
-			while(rs.next()) {
+			while(rs.next()){
 				CategoryDTO dto = new CategoryDTO();
 				dto.setCnum(rs.getInt("cnum"));
 				dto.setCode(rs.getString("code"));
 				dto.setCname(rs.getString("cname"));
-				clist.add(dto);
+				list.add(dto);
 			}
-			return clist;
-		}finally {
+			return list;
+		}finally{
 			if (rs != null) rs.close();
 			if (ps != null) ps.close();
 			if (con != null) pool.returnConnection(con);
@@ -53,24 +73,16 @@ public class CategoryBean {
 	}
 	
 	public int deleteCate(int cnum) throws SQLException {
-		try {
+		String sql = "delete from category where cnum=?";
+		try{
 			con = pool.getConnection();
-			String sql = "delete from category where cnum = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, cnum);
 			int res = ps.executeUpdate();
 			return res;
-		}finally {
+		}finally{
 			if (ps != null) ps.close();
 			if (con != null) pool.returnConnection(con);
 		}
 	}
 }
-
-
-
-
-
-
-
-

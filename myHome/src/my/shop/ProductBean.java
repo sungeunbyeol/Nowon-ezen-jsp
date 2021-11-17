@@ -1,8 +1,7 @@
 package my.shop;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -26,7 +25,8 @@ public class ProductBean {
 			ps.setString(1, mr.getParameter("pname"));
 			String pcategory_fk = mr.getParameter("pcategory_fk");
 			String pcode = mr.getParameter("pcode");
-			ps.setString(2, pcategory_fk += pcode);
+			pcategory_fk += pcode;
+			ps.setString(2, pcategory_fk);
 			ps.setString(3, mr.getParameter("pcompany"));
 			ps.setString(4, mr.getFilesystemName("pimage"));
 			ps.setInt(5, Integer.parseInt(mr.getParameter("pqty")));
@@ -37,6 +37,21 @@ public class ProductBean {
 			int res = ps.executeUpdate();
 			return res;
 		}finally {
+			if (ps != null) ps.close();
+			if (con != null) pool.returnConnection(con);
+		}
+	}
+	
+	public List<ProductDTO> listProd() throws SQLException {
+		try {
+			con = pool.getConnection();
+			String sql = "select * from product";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			List<ProductDTO> list = makeList(rs);
+			return list;
+		}finally {
+			if (rs != null) rs.close();
 			if (ps != null) ps.close();
 			if (con != null) pool.returnConnection(con);
 		}
@@ -62,22 +77,7 @@ public class ProductBean {
 		return list;
 	}
 	
-	public List<ProductDTO> listProduct() throws SQLException {
-		try {
-			con = pool.getConnection();
-			String sql = "select * from product";
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			List<ProductDTO> list = makeList(rs);
-			return list;
-		}finally {
-			if (rs != null) rs.close();
-			if (ps != null) ps.close();
-			if (con != null) pool.returnConnection(con);
-		}
-	}
-	
-	public int deleteProduct(int pnum) throws SQLException {
+	public int deleteProd(int pnum) throws SQLException {
 		try {
 			con = pool.getConnection();
 			String sql = "delete from product where pnum = ?";
@@ -110,8 +110,8 @@ public class ProductBean {
 	public int updateProduct(MultipartRequest mr) throws SQLException {
 		try {
 			con = pool.getConnection();
-			String sql = "update product set pname=?, pcompany=?, pimage=?, "
-					+ "pqty=?, price=?, pspec=?, pcontents=?, point=? where pnum=?";
+			String sql = "update product set pname=?, pcompany=?, "
+				+ "pimage=?, pqty=?, price=?, pspec=?, pcontents=?, point=? where pnum=?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, mr.getParameter("pname"));
 			ps.setString(2, mr.getParameter("pcompany"));
@@ -134,8 +134,6 @@ public class ProductBean {
 		}
 	}
 }
-
-
 
 
 

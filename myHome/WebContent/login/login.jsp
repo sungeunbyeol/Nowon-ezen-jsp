@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	function searchMember(mode){
 		window.open("<%=request.getContextPath()%>/login/search.jsp?mode=" + mode, 
-																				"search", "width=650, height=400")
+				"search", "width=640, height=400")
 	}
 	function loginCheck(){
 		if (f.id.value==""){
@@ -23,17 +23,18 @@
 	}
 </script>
 <%
+		Cookie[] cks = request.getCookies();
 		String value = null;
-		Cookie cks[] = request.getCookies();
 		if (cks != null && cks.length != 0){
 			for(int i=0; i<cks.length; ++i){
-				String name = cks[i].getName();
-				if (name.equals("saveId")){
+				String ckName = cks[i].getName();
+				if (ckName.equals("saveId")){
 					value = cks[i].getValue();
 					break;
 				}
 			}
 		}
+		//이부분에서 value값이 null이면 쿠키에 저장값 없다는 뜻
 %>
 <br>
 <img src="../img/bottom.gif" width=570 height="40" border="0" alt="">
@@ -52,7 +53,7 @@
 <%		if (value == null){ %>			
 				<input type="text" name="id" tabindex="1">
 <%		}else { %>
-				<input type="text" name="id" value="<%=value%>" tabindex="1">
+				<input type="text" name="id" tabindex="1" value="<%=value%>">
 <%		} %>				
 			</td>
 			<td rowspan="2" width="30%" valign="middle">
@@ -60,7 +61,7 @@
 					<img src="../img/bt_login.gif" border="0" alt="로그인"  tabindex="3">&nbsp;&nbsp;<br>
 				</a>
 				<nobr>
-<%		if (value == null){ %>
+<%		if (value == null){ %>			
 					<input type="checkbox" name="saveId">
 <%		}else { %>
 					<input type="checkbox" name="saveId" checked>
@@ -86,9 +87,10 @@
 				<a href="javascript:searchMember('id')">
  					<img src="../img/bt_search_id.gif" width="60" height="22" alt="아이디 찾기">
  				</a>	
- 				 <a href="javascript:searchMember('pw')">
+ 				<a href="javascript:searchMember('pw')">
 					<img src="../img/bt_search_pw.gif" width="60" height="22" alt="비밀번호 찾기">
-				</a>				
+				</a>	
+								
 			</td>
 		</tr>
 	</table>

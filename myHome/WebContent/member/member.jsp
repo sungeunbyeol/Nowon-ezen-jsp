@@ -1,37 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <html>
-	<head> 
-		<title>회원가입</title>   
+	<head>   
+		<title>회원가입</title>
 		<link rel="stylesheet" type="text/css" href="../style.css">
 		<script type="text/javascript">
 			function check(){
 				if (f.id.value==""){
-					alert("아이디를 입력하셔야 합니다.")
+					alert("아이디를 입력해 주세요!!")
 					f.id.focus()
 					return
 				}
 				if (f.passwd.value==""){
-					alert("비밀번호를 입력하셔야 합니다.")
+					alert("비밀번호를 입력해 주세요!!")
 					f.passwd.focus()
 					return
 				}
 				document.f.submit()
 			}
-		</script>
-	</head>	 
-<%
-		request.setCharacterEncoding("EUC-KR");
-		String name = request.getParameter("name");
-		String ssn1 = request.getParameter("ssn1");
-		String ssn2 = request.getParameter("ssn2");
-		if (name == null || name.trim().equals("") || ssn1 == null || 
-						ssn1.trim().equals("") || ssn2 == null || ssn2.trim().equals("")){
-			response.sendRedirect("memberSsn.jsp");
-			return;
-		}
-%>
+		</script> 
+	</head>	
 	<body>
+	<%
+	request.setCharacterEncoding("EUC-KR");
+	String name = request.getParameter("name");
+	String ssn1 = request.getParameter("ssn1");
+	String ssn2 = request.getParameter("ssn2");
+	
+	if (name==null || ssn1==null || ssn2==null || name.trim().equals("") 
+				|| ssn1.trim().equals("") || ssn2.trim().equals("")){
+		response.sendRedirect("memberSsn.jsp");
+		return;
+	}
+	%>
 		<form name="f" method="POST" action="member_input.jsp">
 			<table width="600" align="center" class="outline">
   				<tr>
@@ -41,7 +42,6 @@
 					<td width="150" class="m3">이름</td>
 					<td class="m3">
 						<input type="text" name="name" class="box" value="<%=name%>" readOnly>
-					</td>
 				</tr>
 				<tr>
 					<td width="150" class="m3">아이디</td>
@@ -85,4 +85,4 @@
   			</table>
 		</form>
 	</body>
- 
+</html>   

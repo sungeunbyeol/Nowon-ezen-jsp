@@ -1,93 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" import="java.util.*, my.shop.*"%>
-
+    pageEncoding="EUC-KR"%>
+<%@ page import="java.util.*, my.shop.*" %>    
 <%@ include file="top.jsp"%>
-
-<div align="center">
-
-<jsp:useBean id="cdao" class="my.shop.CategoryBean" />
-<jsp:useBean id="dbPool" class="my.db.ConnectionPoolBean" scope="application"/>
-<jsp:setProperty property="pool" name="cdao" value="<%=dbPool%>"/>
+<jsp:useBean id="ctdao" class="my.shop.CategoryBean" />
+<jsp:useBean id="pool" class="my.db.ConnectionPoolBean" scope="application"/>
+<jsp:setProperty property="pool" name="ctdao" value="<%=pool%>"/>
 <%
-		List<CategoryDTO> listCate=cdao.listCate();
-		if(listCate==null || listCate.size()==0){%>
+		List<CategoryDTO> cateList = ctdao.listCate();
+		if (cateList == null || cateList.size()==0){%>
 		<script type="text/javascript">
-			alert("카테고리를 먼저 등록해주세요!!")
-			location.href="cate_input.jsp"
+			alert("카테고리를 먼저 등록해 주세요!!");
+			location.href="cate_input.jsp";
 		</script>
-<% return;
-	}
+<%		return;
+		}
 %>
-<form name="f" action="prod_input_ok.jsp" method="post" enctype="multipart/form-data">
-	<table border="0" width="600" class="outline">
+<form name="f" action="prod_input_ok.jsp" method="post" 
+										enctype="multipart/form-data">
+	<table border="0" class="outline" width="600">
 		<caption>상품등록카테고리</caption>
 		<tr>
-			<th  bgcolor="pink">카테고리</th>
+			<th class="m2">카테고리</th>
 			<td align="left">
-			<select name="pcategory_fk">
-			<%
-				for(CategoryDTO dto : listCate){
-			%>
-			<option vlaue="<%=dto.getCode() %>">
-				<%=dto.getCname() %>[<%=dto.getCode() %>]
-			<%
-				}
-			%>
-			</select>
-			</td>
-		</tr>
-		<tr>
-			<th bgcolor="pink">상품명</th>
-			<td><input type="text" name="pname"></td>
-		</tr>
-		<tr>
-			<th bgcolor="pink">상품코드</th>
-			<td><input type="text" name="pcategory_fk"></td>
-		</tr>
-		<tr>
-			<th bgcolor="pink">제조회사</th>
-			<td><input type="text" name="pcompany"></td>
-		</tr>
-		<tr>
-			<th bgcolor="pink">상품이미지</th>
-			<td><input type="file" name="pimage"></td>
-		</tr>
-		<tr>
-			<th bgcolor="pink">상품 수량</th>
-			<td><input type="text" name="pqty"></td>
-		</tr>
-		<tr>
-			<th bgcolor="pink">상품 가격</th>
-			<td><input type="text" name="price"></td>
-		</tr>
-		<tr>
-			<th bgcolor="pink">상품 스펙</th>
-			<td>
-				<select name="pspec">
-					<option value="normal" selected>::NORMAL::</option>
-					<option value="hit">HIT</option>
-					<option value="best">BEST</option>
-					<option value="new">NEW</option>
+				<select name="pcategory_fk">
+<%		for(CategoryDTO dto : cateList){%>
+				<option value="<%=dto.getCode()%>">
+						<%=dto.getCname()%>[<%=dto.getCode()%>]</option>
+<%		}%>
 				</select>
 			</td>
 		</tr>
 		<tr>
-			<th bgcolor="pink">상품 소개</th>
-			<td><textarea rows="5" cols="60"  name="pcontents"></textarea></td>
+			<th class="m2">상품명</th>
+			<td align="left"><input type="text" name="pname"></td>
 		</tr>
 		<tr>
-			<th bgcolor="pink">상품 포인트</th>
-			<td><input type="text" name="point"></td>
+			<th class="m2">상품코드</th>
+			<td align="left"><input type="text" name="pcode"></td>
 		</tr>
-		<tr bgcolor=#E2E2E2>
-			<td colspan="2">
-			<input type="submit" value="상품 등록">
-			<input type="reset" value="다시 입력">
+		<tr>
+			<th class="m2">제조회사</th>
+			<td align="left"><input type="text" name="pcompany"></td>
+		</tr>
+		<tr>
+			<th class="m2">상품이미지</th>
+			<td align="left"><input type="file" name="pimage"></td>
+		</tr>
+		<tr>
+			<th class="m2">상품수량</th>
+			<td align="left"><input type="text" name="pqty"></td>
+		</tr>
+		<tr>
+			<th class="m2">상품가격</th>
+			<td align="left"><input type="text" name="price"></td>
+		</tr>
+		<tr>
+			<th class="m2">상품스팩</th>
+			<td align="left">
+				<select name="pspec">
+					<option value="none" selected>::NORMAL::</option>
+					<option value="HIT">HIT</option>
+					<option value="NEW">NEW</option>
+					<option value="BEST">BEST</option>
+				</select>
+			</td>	
+		</tr>
+		<tr>
+			<th class="m2">상품소개</th>
+			<td align="left">
+				<textarea name="pcontents" rows="5" cols="50"></textarea>
 			</td>
 		</tr>
+		<tr>
+			<th class="m2">상품포인트</th>
+			<td align="left"><input type="text" name="point"></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="m1">
+				<input type="submit" value="상품등록">
+				<input type="reset" value="취소">
+			</td>
+		</tr>			
 	</table>
 </form>
-
-</div>
-
 <%@ include file="bottom.jsp"%>
+
+
+
+
+
+
+
+
+

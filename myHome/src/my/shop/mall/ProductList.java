@@ -1,15 +1,13 @@
 package my.shop.mall;
 
+import java.sql.*;
 import java.util.*;
 
-import my.db.ConnectionPoolBean;
-
-import java.sql.*;
+import my.db.*;
 import my.shop.*;
 
 public class ProductList {
-	Hashtable<String, List<ProductDTO>> ht = new Hashtable<>();
-	//String : spec or categoryfk, List : 해당키의 상품들
+	Map<String, List<ProductDTO>> map = new Hashtable<>();
 	
 	Connection con;
 	PreparedStatement ps;
@@ -20,6 +18,23 @@ public class ProductList {
 		this.pool = pool;
 	}
 	
+	public List<ProductDTO> selectByCode(String code) throws SQLException {
+		try {
+			con = pool.getConnection();
+			String sql = "select * from product where pcategory_fk like ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, code + "%");
+			rs = ps.executeQuery();
+			List<ProductDTO> list = makeList(rs);
+			map.put(code, list);
+			return list;
+		}finally {
+			if (rs != null) rs.close();
+			if (ps != null) ps.close();
+			if (con != null) pool.returnConnection(con);
+		}
+	}
+	
 	public List<ProductDTO> selectBySpec(String pspec) throws SQLException {
 		try {
 			con = pool.getConnection();
@@ -28,17 +43,16 @@ public class ProductList {
 			ps.setString(1, pspec);
 			rs = ps.executeQuery();
 			List<ProductDTO> list = makeList(rs);
-			ht.put(pspec, list);
+			map.put(pspec, list);
 			return list;
 		}finally {
 			if (rs != null) rs.close();
 			if (ps != null) ps.close();
 			if (con != null) pool.returnConnection(con);
 		}
-		
 	}
 	
-	public List<ProductDTO> makeList(ResultSet rs) throws SQLException {
+	protected List<ProductDTO> makeList(ResultSet rs) throws SQLException {
 		List<ProductDTO> list = new ArrayList<>();
 		while(rs.next()) {
 			ProductDTO dto = new ProductDTO();
@@ -58,26 +72,8 @@ public class ProductList {
 		return list;
 	}
 	
-	
-	public List<ProductDTO> selectByCode(String code) throws SQLException {
-		try {
-			con = pool.getConnection();
-			String sql = "select * from product where pcategory_fk like ?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, code +"%");
-			rs = ps.executeQuery();
-			List<ProductDTO> list = makeList(rs);
-			ht.put(code, list);
-			return list;
-		}finally {
-			if (rs != null) rs.close();
-			if (ps != null) ps.close();
-			if (con != null) pool.returnConnection(con);
-		}
-	}
-	
 	public ProductDTO getProduct(int pnum, String select) {
-		List<ProductDTO> list = ht.get(select);
+		List<ProductDTO> list = map.get(select);
 		for(ProductDTO dto : list) {
 			if (dto.getPnum() == pnum) {
 				return dto;
@@ -86,16 +82,6 @@ public class ProductList {
 		return null;
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

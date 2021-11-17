@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<!-- bottom.jsp -->
 </td>
 			</tr>
 			<tr height="10%">
-				<td align="center" colspan="2">
-					Open API 활용 자바(JAVA) 안드로이드 웹 & 앱 개발자 1기
-				</td>
+				<td align="center" colspan="2">이 젠 아 카 데 미 학 원 Big Data 3기</td>
 			</tr>
-		</table>
+		</table>	
 	</div>
 </body>
 </html>
