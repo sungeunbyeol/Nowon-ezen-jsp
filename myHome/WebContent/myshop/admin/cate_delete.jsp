@@ -5,10 +5,6 @@
 <jsp:setProperty property="pool" name="ctdao" value="<%=pool%>"/>
 <%
 		String cnum = request.getParameter("cnum");
-		if (cnum==null || cnum.trim().equals("")){
-			response.sendRedirect("cate_list.jsp");
-			return;
-		}
 		
 		int result = ctdao.deleteCate(Integer.parseInt(cnum)); 
 		String msg = null;

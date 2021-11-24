@@ -163,8 +163,13 @@
       <Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvc3" path="/mvc3" reloadable="true" source="org.eclipse.jst.jee.server:mvc3">
       	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/oracle" password="javaapi" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="javaapi"/>
       </Context>
-      
-      </Host>
+      <Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvcHome" path="/mvcHome" reloadable="true" source="org.eclipse.jst.jee.server:mvcHome">
+      	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/oracle" password="javaapi" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="javaapi"/>
+      </Context>
+      <Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvc4" path="/mvc4" reloadable="true" source="org.eclipse.jst.jee.server:mvc4">
+      	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/oracle" password="javaapi" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="javaapi"/>
+      </Context>
+      <Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\myHome" path="/myHome" reloadable="true" source="org.eclipse.jst.jee.server:myHome"/></Host>
     </Engine>
   </Service>
 </Server>
