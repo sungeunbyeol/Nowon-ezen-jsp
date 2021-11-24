@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" import="java.util.*, shop.*"%>
+    pageEncoding="EUC-KR" import="java.util.*,shop.admin.*"%>
 <!-- cartShop.jsp -->
 <%
 		List<ShopDTO> cart = (List)session.getAttribute("cart");

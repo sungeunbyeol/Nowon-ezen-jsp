@@ -35,7 +35,7 @@ public class AppFrontServlet extends HttpServlet {
 		}else if (cmd.equals("/login.do")) {
 			nextPage = "login.log";
 		}else if (cmd.equals("/shop.do")) {
-			nextPage = "shop.shop";
+			nextPage = "main.shop";
 		}else if (cmd.equals("/board.do")) {
 			nextPage = "list.board";
 		}

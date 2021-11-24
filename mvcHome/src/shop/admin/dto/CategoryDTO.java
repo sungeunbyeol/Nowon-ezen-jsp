@@ -1,4 +1,4 @@
-package shop.dto;
+package shop.admin.dto;
 
 public class CategoryDTO {
 	private int cnum;
