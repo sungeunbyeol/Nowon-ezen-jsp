@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- writeForm.jsp -->
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="../style.css">
@@ -31,16 +32,12 @@
 	</script>
 </head>
 <body>
-<%
-		int num = (Integer)request.getAttribute("num");
-		int re_step = (Integer)request.getAttribute("re_step");
-		int re_level = (Integer)request.getAttribute("re_level");
-%>
+
 <div align="center">
 	<form name="f" action="writePro.board" method="post" onsubmit="return check()">
-		<input type="hidden" name="num" value="<%=num%>"/>
-		<input type="hidden" name="re_step" value="<%=re_step%>"/>
-		<input type="hidden" name="re_level" value="<%=re_level%>"/>
+		<input type="hidden" name="num" value="${num}"/>
+		<input type="hidden" name="re_step" value="${re_step}"/>
+		<input type="hidden" name="re_level" value="${re_level}"/>
 		<table border="1" width="500">
 			<tr bgcolor="yellow">
 				<td align="center" colspan="2">±Û ¾² ±â</td>

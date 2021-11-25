@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- deleteForm.jsp -->
-<%
-		String num = request.getParameter("num");
-%>
+<%@ tablib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ tablib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 	<title>글삭제</title>
@@ -14,7 +13,7 @@
 	<b>글삭제</b>
 	<br><br>
 	<form name="f" action="deletePro.board" method="post">
-		<input type="hidden" name="num" value="<%=num%>"/>
+		<input type="hidden" name="num" value="${param.num}"/>
 		<table border="1" width="400">
 			<tr bgcolor="yellow">
 				<th>비밀번호를 입력해 주세요</th>			

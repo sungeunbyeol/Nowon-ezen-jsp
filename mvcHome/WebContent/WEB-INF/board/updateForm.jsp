@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="board.dto.*"%>
 <!-- updateForm.jsp -->
-<%
-		BoardDBBean dto = (BoardDBBean)request.getAttribute("getBoard");
-%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<title>글수정</title>
@@ -37,24 +35,24 @@
 <body>
 <div align="center">
 	<form name="f" action="updatePro.board" method="post" onsubmit="return check()">
-		<input type="hidden" name="num" value="<%=dto.getNum()%>"/>
+		<input type="hidden" name="num" value="${getBoard.num}"/>
 		<h3>글수정</h3>
 		<table border="1" width="500">
 			<tr>
 				<td align="center" width="20%" bgcolor="yellow">이 름</td>
-				<td><input type="text" name="writer" class="box" value="<%=dto.getWriter()%>"></td>
+				<td><input type="text" name="writer" class="box" value="${getBoard.writer}"></td>
 			</tr>
 			<tr>
 				<td align="center" width="20%" bgcolor="yellow">제 목</td>
-				<td><input type="text" name="subject" class="box" size="50" value="<%=dto.getSubject()%>"></td>
+				<td><input type="text" name="subject" class="box" size="50" value="${getBoard.subject}"></td>
 			</tr>
 			<tr>
 				<td align="center" width="20%" bgcolor="yellow">Email</td>
-				<td><input type="text" name="email" class="box" size="50" value="<%=dto.getEmail()%>"></td>
+				<td><input type="text" name="email" class="box" size="50" value="${getBoard.email}"></td>
 			</tr>
 			<tr>
 				<td align="center" width="20%" bgcolor="yellow">내 용</td>
-				<td><textarea rows="11" cols="50" name="content" class="box"><%=dto.getContent()%></textarea></td>
+				<td><textarea rows="11" cols="50" name="content" class="box">"${getBoard.content}</textarea></td>
 			</tr>
 			<tr>
 				<td align="center" width="20%" bgcolor="yellow">비밀번호</td>

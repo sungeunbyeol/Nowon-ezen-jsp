@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- search.jsp -->
-<%
-		String mode = request.getParameter("mode");
-		String title = (String)request.getAttribute("title");
-%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-	<title><%=title%>찾기</title>
+	<title>${title}찾기</title>
 	<link rel="stylesheet" type="text/css" href="style.css"> 
 	<script type="text/javascript">
 		function check(mode){
@@ -38,9 +35,9 @@
 <body>
 	<div align="center">
 	<hr color="green" width="300">
-	<h2><%=title%> 찾기</h2>
+	<h2>${title} 찾기</h2>
 	<hr color="green" width="300">
-	<form name="f" action="searchCheck.log" method="post" onsubmit="return check('<%=mode%>')">
+	<form name="f" action="searchCheck.log" method="post" onsubmit="return check('${mode}')">
 		<table width="500" class="outline">
 			<tr>
 				<th>회원명</th>
@@ -51,12 +48,12 @@
 				<td><input type="text" name="ssn1" class="box" maxlength="6"> -
 				<input type="password" name="ssn2" class="box" maxlength="7"></td>
 			</tr>
-<%		if (mode.equals("pw")){%>
+			<c:if test="${mode.equals('pw')}">
 			<tr>
 				<th>아이디</th>
 				<td><input type="text" name="id" class="box">
 			</tr>
-<%		} %>			
+			</c:if>		
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="찾기">

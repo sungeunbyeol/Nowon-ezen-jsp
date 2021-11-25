@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="shop.admin.dto.*"%>
 <!-- prod_view.jsp -->
-<%
-		ProductDTO dto = (ProductDTO)request.getAttribute("pdto");
-		String upPath = (String)request.getAttribute("upPath");
-%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="top.jsp"%>
 <div align="center">
 	<form name="f" action="prod_list.shop" method="post">
@@ -12,38 +9,38 @@
 			<caption>상품상세보기</caption>
 			<tr>
 				<th width="15%" class="m2">카테고리</th>
-				<td width="35%" align="center"><%=dto.getPcategory_fk()%></td>
+				<td width="35%" align="center">${pdto.pcategory_fk}</td>
 				<th width="15%" class="m2">상품번호</th>
-				<td width="35%" align="center"><%=dto.getPnum()%></td>
+				<td width="35%" align="center">${pdto.pnum}</td>
 			</tr>
 			<tr>
 				<th width="15%" class="m2">상품명</th>
-				<td width="35%" align="center"><%=dto.getPname()%></td>
+				<td width="35%" align="center">${pdto.pname}</td>
 				<th width="15%" class="m2">제조회사</th>
-				<td width="35%" align="center"><%=dto.getPcompany()%></td>
+				<td width="35%" align="center">${pdto.pcompany}</td>
 			</tr>
 			<tr>
 				<th width="15%" class="m2">상품이미지</th>
 				<td colspan="3" align="center">
-					<img src="<%=upPath%>/<%=dto.getPimage()%>" width="60" height="60">
+					<img src="${upPath}/${pdto.pimage}" width="60" height="60">
 				</td>
 			</tr>
 			<tr>
 				<th width="15%" class="m2">상품수량</th>
-				<td width="35%" align="center"><%=dto.getPqty()%></td>
+				<td width="35%" align="center">${pdto.pqty}</td>
 				<th width="15%" class="m2">상품가격</th>
-				<td width="35%" align="center"><%=dto.getPrice()%></td>
+				<td width="35%" align="center">${pdto.price}</td>
 			</tr>
 			<tr>
 				<th width="15%" class="m2">상품스팩</th>
-				<td width="35%" align="center"><%=dto.getPspec()%></td>
+				<td width="35%" align="center">${pdto.pspec}</td>
 				<th width="15%" class="m2">상품포인트</th>
-				<td width="35%" align="center"><%=dto.getPoint()%></td>
+				<td width="35%" align="center">${pdto.point}</td>
 			</tr>
 			<tr>
 				<th width="15%" class="m2">상품소개</th>
 				<td colspan="3">
-					<textarea name="pcontents" rows="5" cols="50" readOnly><%=dto.getPcontents()%></textarea>
+					<textarea name="pcontents" rows="5" cols="50" readOnly>${pdto.pcontents}</textarea>
 				</td>
 			</tr>
 			<tr>

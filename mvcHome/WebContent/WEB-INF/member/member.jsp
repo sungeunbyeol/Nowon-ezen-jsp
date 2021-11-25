@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- member.jsp -->
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="top.jsp" %>
 		<script type="text/javascript">
 			function check(){
@@ -17,11 +18,6 @@
 				document.f.submit()
 			}
 		</script>
-<%
-		String name = (String)session.getAttribute("name");
-		String ssn1 = (String)session.getAttribute("ssn1");
-		String ssn2 = (String)session.getAttribute("ssn2");
-%>
 	<body>
 		<form name="f" method="POST" action="insertMemberOk.mem">
 			<table width="600" align="center" class="outline">
@@ -31,7 +27,7 @@
 				<tr>
 					<td width="150" class="m3">이름</td>
 					<td class="m3">
-						<input type="text" name="name" class="box" value="<%=name%>" readOnly>
+						<input type="text" name="name" class="box" value="${name}" readOnly>
 					</td>
 				</tr>
 				<tr>
@@ -49,8 +45,8 @@
   				<tr>
 					<td width="150" class="m3">주민번호</td>
 					<td class="m3">
-						<input type="text" name="ssn1" class="box" value="<%=ssn1%>" readOnly> -
-				<input type="password" name="ssn2" class="box" value="<%=ssn2%>" readOnly>
+						<input type="text" name="ssn1" class="box" value="${ssn1}" readOnly> -
+				<input type="password" name="ssn2" class="box" value="${ssn2}" readOnly>
 					</td>
   				</tr>
   				<tr>

@@ -2,16 +2,14 @@
     pageEncoding="EUC-KR"%>
 <%@ page import="java.util.*, shop.admin.dto.*" %>      
 <!-- mall_top.jsp -->
-<%
-		List<CategoryDTO> listCate = (List)session.getAttribute("cateList");
-		if (listCate == null || listCate.size() == 0) {%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+	<c:if test="${listCate == null || listCate.size() == 0 }">
 		<script type="text/javascript">
 			alert("ºÓ«Œ∏Ù ¡ÿ∫Ò¡ﬂ¿‘¥œ¥Ÿ.!!")
 			location.href="main.do"
 		</script>		
-<%		return;
-		}
-%>
+	</c:if>
 <html>
 <head>
 	<title>ºÓ«Œ∏Ù»®</title>
@@ -40,13 +38,13 @@
 				<td width="20%" valign="top" align="center">
 					tree/view
 					<table border="1" width="100%">
-<%				for (CategoryDTO dto : listCate){ %>
+					<c:forEach var="dto" items="${cateList}">
 						<tr>
-							<td><a href="javascript:cateList('<%=dto.getCname()%>','<%=dto.getCode()%>')">
-								<%=dto.getCname()%>[<%=dto.getCode()%>]
+							<td><a href="javascript:cateList('${cateList.cname}',${cateList.code}'">
+								${cateList.cname}[${cateList.code}]
 							</a></td>
 						</tr>
-<%				} %>						
+					</c:forEach>					
 					</table>
 					<form name="f" method="post">
 						<input type="hidden" name="cname">

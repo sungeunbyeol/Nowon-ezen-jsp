@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!-- login.jsp-->
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 	<title>로그인</title>
@@ -28,9 +29,7 @@
 	</script>
 </head>
 <body>	
-<%
-		String value = (String)request.getAttribute("cookie");
-%>
+
 <div align="center">
 <br>
 <img src="images/bottom.gif" width="570" height="40" border="0" alt="">
@@ -46,22 +45,24 @@
 				width="28" height="11" border="0" alt="아이디">&nbsp;&nbsp;
 			</td>
 			<td width="40%">
-<%		if (value == null){ %>			
+			<c:if test="${value==null}">	
 				<input type="text" name="id" tabindex="1">
-<%		}else { %>
-				<input type="text" name="id" value="<%=value%>" tabindex="1">
-<%		} %>				
+			</c:if>
+			<c:if test="${value!=null}">
+				<input type="text" name="id" value="${value}" tabindex="1">
+			</c:if>			
 			</td>
 			<td rowspan="2" width="30%" valign="middle">
 				<a href="javascript:loginCheck()">
 					<img src="images/bt_login.gif" border="0" alt="로그인"  tabindex="3">&nbsp;&nbsp;<br>
 				</a>
 				<nobr>
-<%		if (value == null){ %>
+			<c:if test="${value==null}">
 					<input type="checkbox" name="saveId">
-<%		}else { %>
+			</c:if>
+			<c:if test="${value!=null}">
 					<input type="checkbox" name="saveId" checked>
-<%		} %>					
+			</c:if>				
 					<font face="굴림" size="2">아이디 기억하기</font>
 				</nobr>
 			</td>

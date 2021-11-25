@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="java.util.*, shop.admin.dto.*, java.text.*"%>
 <!-- mall_order.jsp -->
-<%
-		Hashtable<Integer, ProductDTO> ht = (Hashtable)request.getAttribute("order");
-%>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="mall_top.jsp"%>
 <div align="center">
 	<table width="100%" align="center" class="outline">
@@ -17,22 +16,20 @@
 			<th width="15%" align="center">수량</th>
 			<th width="35%" align="center">금액</th>
 		</tr>
-<%	DecimalFormat df = new DecimalFormat("###,###");
-		int cartTotalPrice = 0;
-		Enumeration<Integer> enu = ht.keys();
-		while(enu.hasMoreElements()){
-			ProductDTO dto = ht.get(enu.nextElement());%>		
+		<fmt:formatNumber value="${df}" type="currency" pattern="###,###"/>
+		<c:set var="cartTotalPrice" value="0"/>
+		<c:if test="${ enu.hasMoreElements}">
 		<tr>
-			<td align="center"><%=dto.getPname()%></td>
-			<td align="center"><%=dto.getPqty()%></td>
-			<td align="center"><%=df.format(dto.getPqty()*dto.getPrice())%>원</td>
+			<td align="center">${order.pname}</td>
+			<td align="center">${order.pqyt}</td>
+			<td align="center">${df.order.pqyt*df.order.price}원</td>
 		</tr>
-<%		cartTotalPrice += dto.getPqty() * dto.getPrice();
-		} %>	
+		</c:if>	
+		<c:set var="cartTotalPrice" value="${cartTotalPrice +=order.pqyt*order.price}"/>
 		<tr class="m1">
 			<td colspan="3">
 				<b>결재하실 총액 : </b>
-				<font color="red">[<%=df.format(cartTotalPrice)%>]원</font>
+				<font color="red">[${df.cartTotalPrice}]원</font>
 			</td>
 		</tr>	
 	</table>

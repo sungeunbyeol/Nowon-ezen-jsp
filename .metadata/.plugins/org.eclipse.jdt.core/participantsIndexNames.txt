@@ -23,6 +23,8 @@ C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\258503
 \mvcHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\746261512.index
 \myHome\src
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1722330813.index
+\jstl\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2315862970.index
 \mvc4\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1909759100.index
@@ -67,5 +69,7 @@ C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\133061
 \mvcHome\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1877075660.index
 \jspBook\src
+C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3817016327.index
+\el\src
 C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\114535658.index
 \myHome\src

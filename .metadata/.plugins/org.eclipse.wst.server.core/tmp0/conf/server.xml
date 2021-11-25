@@ -169,7 +169,7 @@
       <Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mvc4" path="/mvc4" reloadable="true" source="org.eclipse.jst.jee.server:mvc4">
       	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="-1" name="jdbc/oracle" password="javaapi" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="javaapi"/>
       </Context>
-      <Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\myHome" path="/myHome" reloadable="true" source="org.eclipse.jst.jee.server:myHome"/></Host>
+      <Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\myHome" path="/myHome" reloadable="true" source="org.eclipse.jst.jee.server:myHome"/><Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\el" path="/el" reloadable="true" source="org.eclipse.jst.jee.server:el"/><Context docBase="C:\javaAPI\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jstl" path="/jstl" reloadable="true" source="org.eclipse.jst.jee.server:jstl"/></Host>
     </Engine>
   </Service>
 </Server>

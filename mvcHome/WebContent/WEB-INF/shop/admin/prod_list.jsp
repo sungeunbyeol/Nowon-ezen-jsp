@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ page import="java.util.*, shop.admin.dto.*" %>    
 <!-- prod_list.jsp -->
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="top.jsp"%>
 <script type="text/javascript">
 	function checkDel(pnum, pimage){
@@ -24,30 +25,31 @@
 			<th>수량</th>
 			<th>수정|삭제</th>
 		</tr>
-<%	List<ProductDTO> list = (List)request.getAttribute("prodList");
-		if (list == null || list.size() == 0){	%>
+		<c:if test="${list == null || list.size() == 0}">
+List)request.getAttribute("prodList");
 		<tr>
 			<td colspan="8">등록된 상품이 없습니다.</td>
 		</tr>
-<%	} else {
-			for(ProductDTO dto : list){
+		</c:if>
+		<c:if test="${list != null || list.size() != 0}">
+			<c:forEach var="dto" items="${prodList}">
 				String upPath = config.getServletContext().getRealPath("/myshop/images");
 				%>
 		<tr>
-			<td><%=dto.getPnum()%></td>
-			<td><%=dto.getPcategory_fk()%></td>
-			<td><%=dto.getPname()%></td>
+			<td>${prodList.pnum}</td>
+			<td>${prodList.pcategory_fk}</td>
+			<td>${prodList.pname}</td>
 			<td>
-				<a href="prod_view.shop?pnum=<%=dto.getPnum()%>">
-					<img src="<%=upPath%>/<%=dto.getPimage()%>" width="40" height="40">
+				<a href="prod_view.shop?pnum=${prodList.pnum}">
+					<img src="${upPath}/${prodList.pimage}" width="40" height="40">
 				</a>	
 			</td>
-			<td><%=dto.getPrice()%></td>
-			<td><%=dto.getPcompany()%></td>
-			<td><%=dto.getPqty()%></td>
+			<td>${prodList.price}</td>
+			<td>${prodList.pcompany}</td>
+			<td>${prodList.pqty}</td>
 			<td>
-				<a href="prod_update.shop?pnum=<%=dto.getPnum()%>">수정</a> | 
-				<a href="javascript:checkDel('<%=dto.getPnum()%>','<%=dto.getPimage()%>')">삭제</a>
+				<a href="prod_update.shop?pnum=${prodList.pnum}">수정</a> | 
+				<a href="javascript:checkDel('${prodList.pnum}','${prodList.pimage}')">삭제</a>
 			</td>	
 		</tr>	
 <%		}

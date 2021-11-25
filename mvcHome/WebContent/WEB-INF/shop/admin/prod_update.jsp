@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="shop.admin.dto.*"%>
 <!-- prod_update.jsp -->
-
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 		ProductDTO dto = (ProductDTO)request.getAttribute("pdto");
 		String upPath = (String)request.getAttribute("upPath");
@@ -20,40 +20,42 @@
 		<tr>
 			<th class="m2">상품번호</th>
 			<td>
-				<%=dto.getPnum()%>
-				<input type="hidden" name="pnum" value="<%=dto.getPnum()%>"/>	
+				${pdto.pnum}
+				<input type="hidden" name="pnum" value="${pdto.pnum}"/>	
 			</td>
 		</tr>
 		<tr>
 			<th class="m2">상품명</th>
-			<td><input type="text" name="pname" value="<%=dto.getPname()%>"></td>
+			<td><input type="text" name="pname" value="${pdto.pname}"></td>
 		</tr>
 		<tr>
 			<th class="m2">제조회사</th>
-			<td><input type="text" name="pcompany" value="<%=dto.getPcompany()%>"></td>
+			<td><input type="text" name="pcompany" value="${pdto.pcompany}"></td>
 		</tr>
 		<tr>
 			<th class="m2">상품이미지</th>
 			<td>
-				<img src="<%=upPath%>/<%=dto.getPimage()%>" width="80" height="80">
-				<input type="hidden" name="pimage2" value="<%=dto.getPimage()%>"/>
+				<img src="${upPath}/${pdto.pimage}" width="80" height="80">
+				<input type="hidden" name="pimage2" value="${pdto.pimage}"/>
 				<input type="file" name="pimage">
 			</td>
 		</tr>
 		<tr>
 			<th class="m2">상품수량</th>
-			<td><input type="text" name="pqty" value="<%=dto.getPqty()%>"></td>
+			<td><input type="text" name="pqty" value="${pdto.pqty}"></td>
 		</tr>
 		<tr>
 			<th class="m2">상품가격</th>
-			<td><input type="text" name="price" value="<%=dto.getPrice()%>"></td>
+			<td><input type="text" name="price" value="${pdto.price}"></td>
 		</tr>
 		<tr>
 			<th class="m2">상품스팩</th>
 			<td>
-<%			String[] spec = new String[]{"normal", "hit", "best", "new"};%>
-				<select name="pspec">				
-<%			for(int i=0; i<spec.length; ++i){ 
+			String[] spec = new String[]{"normal", "hit", "best", "new"};%>
+				<select name="pspec">		
+				<c:forEach var="i" begin="0" end="spec.length">
+				<c:if test=""	
+			for(int i=0; i<spec.length; ++i){ 
 					if (dto.getPspec().equals(spec[i])){%>
 						<option value="<%=spec[i]%>" selected><%=spec[i].toUpperCase()%></option>
 <%				}else { %>
